@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.controller.Employee;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.exception.ResourceNotFoundException;
-import com.example.model.Employee;
-import com.example.repository.EmployeeRepository;
+import com.example.model.Employee.Employee;
+import com.example.repository.Employee.EmployeeRepository;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
