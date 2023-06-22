@@ -1,5 +1,0 @@
-com/example/App.class
-com/example/exception/ResourceNotFoundException.class
-com/example/model/Employee.class
-com/example/controller/EmployeeController.class
-com/example/repository/EmployeeRepository.class
