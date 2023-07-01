@@ -47,4 +47,7 @@ public class Customer {
     public void setContractId(long contractId) {
         this.contractId = contractId;
     }
+
+    public void Customer(Customer customerDetails) {
+    }
 }
