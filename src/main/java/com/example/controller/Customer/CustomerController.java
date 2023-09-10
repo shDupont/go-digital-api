@@ -14,13 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Sort;
 
 import com.example.exception.ResourceNotFoundException;
 import com.example.model.Customer.Customer;
 import com.example.repository.Customer.CustomerRepository;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"})
 @RestController
 @RequestMapping("/api/v1/")
 public class CustomerController {
@@ -30,9 +32,13 @@ public class CustomerController {
 	
 	// get all customers
 	@GetMapping("/customers")
-	public List<Customer> getAllcustomers(){
-		return customerRepository.findAll();
-	}		
+	public List<Customer> getAllcustomers(@RequestParam(name = "sortBy", required = false) String sortBy, @RequestParam(name = "order", required = false) String order){
+		if(sortBy == null || order == null){
+			return customerRepository.findAll();
+		}
+		Sort sort = Sort.by(order.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy);
+		return customerRepository.findAll(sort);
+	}
 	
 	// create customer rest api
 	@PostMapping("/customers")

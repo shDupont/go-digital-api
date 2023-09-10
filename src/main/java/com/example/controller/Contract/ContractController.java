@@ -14,13 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Sort;
 
 import com.example.exception.ResourceNotFoundException;
 import com.example.model.Contract.Contract;
 import com.example.repository.Contract.ContractRepository;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"})
 @RestController
 @RequestMapping("/api/v1/")
 public class ContractController {
@@ -32,7 +34,14 @@ public class ContractController {
 	@GetMapping("/contracts")
 	public List<Contract> getAllcontracts(){
 		return contractRepository.findAll();
-	}		
+	}	
+	public List<Contract> getAllcontracts(@RequestParam(name = "sortBy", required = false) String sortBy, @RequestParam(name = "order", required = false) String order){
+		if(sortBy == null || order == null){
+			return contractRepository.findAll();
+		}
+		Sort sort = Sort.by(order.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy);
+		return contractRepository.findAll(sort);
+	}	
 	
 	// create contract rest api
 	@PostMapping("/contracts")

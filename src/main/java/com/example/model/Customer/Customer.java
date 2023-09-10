@@ -23,6 +23,16 @@ public class Customer {
         this.state = state;
         this.contractId = contractId;
     }
+	
+	public Customer(){}
+    
+	public long getId() {
+		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
 
     public String getCnpj() {
         return cnpj;
