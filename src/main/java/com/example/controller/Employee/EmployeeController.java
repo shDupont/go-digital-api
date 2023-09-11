@@ -14,13 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Sort;
 
 import com.example.exception.ResourceNotFoundException;
 import com.example.model.Employee.Employee;
 import com.example.repository.Employee.EmployeeRepository;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"})
 @RestController
 @RequestMapping("/api/v1/")
 public class EmployeeController {
@@ -30,8 +32,12 @@ public class EmployeeController {
 	
 	// get all employees
 	@GetMapping("/employees")
-	public List<Employee> getAllEmployees(){
-		return employeeRepository.findAll();
+	public List<Employee> getAllEmployees(@RequestParam(name = "sortBy", required = false) String sortBy, @RequestParam(name = "order", required = false) String order){
+		if(sortBy == null || order == null){
+			return employeeRepository.findAll();
+		}
+		Sort sort = Sort.by(order.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy);
+		return employeeRepository.findAll(sort);
 	}		
 	
 	// create employee rest api
