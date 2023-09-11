@@ -1,4 +1,4 @@
-#GoDigital Code API
+# GoDigital Code API
 
 <!--Tecnologias Utilizadas e suas versões-->
 
@@ -46,7 +46,7 @@ GoDigital Code API é a parte backend de um sistema de gestão empresarial para 
 
 <br>
 
-- Rest API endpoints ativas:
+- Rest API endpoints ativos:
     - `/employess`
     - `/customers`
     - `/contracts`
@@ -91,17 +91,20 @@ docker-compose up
 ```
 https://localhost:8890/
 ```
-*Imagem do Admin Console*
+![Screenshot da interface do Keycloak no navegador. Tela inicial do "Admin Console"][admin-console-img]
 
 2. Clique em "Acessar painel de controle", e insira as credências padrão para acesso (`{username: "admin", password: "admin"}`)
 
-3. Clique na opção "Clientes" no menu lateral esquerdo, e depois clique em "Importar Cliente"
+<br>
 
-*Imagem do Importe de Cliente*
+3. Clique na opção "Clients" no menu lateral esquerdo, e depois clique em "Import Client"
 
-4. Clique em "Importar de diretório do computador" e selecione o arquivo `users-auth.json` no repositório do projeto
+![Screenshot da interface do Keycloak no navegador, acessando o realm "master" > "Clients". A imagem dá destaque à localização da opção "Import client", ao lado do botão "Create client"][client-import-img]
 
-*Imagem do Arquivo Users-auth*
+
+4. Importe o cliente selecionando o arquivo `users-auth.json` no repositório do projeto
+
+![Screenshot da pasta do projeto com destaque para o arquivo "users-auth.json"][users-auth-file-img]
 
 ### Subindo a API
 
@@ -113,15 +116,17 @@ mvn spring-boot:run
 2. Verifique se a API está funcionando por um dos [endpoints da aplicação](#funcionalidades-gear)
 > *- **Atenção**: Como o banco de dados está **vazio**, o primeiro acesso a qualquer um dos endpoints mostrara um array vazio (colchetes)*
 
-*Imagem de exemplo de acesso à endpoint*
+![Screenshot da tela do navegador acessando o endereço "http://localhost:8080/api/v1/employees". A tela do site esta vazia e preta, apenas com um par de colchetes no canto superior esquerdo.][empty-endpoint-img]
+
+3. Siga toda a lista de passos para **[instalação do GoDigital Code Painel][front-end-repo]**
 
 ## Contribuir :gift:
 
 Se você tem alguma ideia, sugestão, ou viu algum erro, você pode [abrir uma issue][issues] e contar para gente.
 
-<!---Links utilizados no documento-->
+<!-- Links utilizados no documento -->
 
-<!--Badges-->
+<!-- Badges -->
 [spring-badge]: https://img.shields.io/badge/Spring--Boot-2.5.5-green?style=for-the-badge&logo=spring
 
 [java-badge]: https://img.shields.io/badge/Java-17-red?style=for-the-badge&logo=openjdk
@@ -130,7 +135,7 @@ Se você tem alguma ideia, sugestão, ou viu algum erro, você pode [abrir uma i
 
 [docker-compose-badge]: https://img.shields.io/badge/Docker_Compose-2.19.1-blue?style=for-the-badge&logo=docker
 
-<!--Documentations-->
+<!-- Documentations -->
 [postgresql-doc]: https://www.postgresql.org/docs/15/index.html
 
 [java-doc]: https://docs.oracle.com/en/java/javase/17/
@@ -149,4 +154,14 @@ Se você tem alguma ideia, sugestão, ou viu algum erro, você pode [abrir uma i
 
 [front-end-repo]: https://github.com/gpado/painel
 
+<!-- Imagens -->
+[admin-console-img]: https://github.com/GustavoHerreroNunes/go-digital-api/blob/main/readme-assets/admin-console.jpg
+
+[client-import-img]: https://github.com/GustavoHerreroNunes/go-digital-api/blob/main/readme-assets/import_client.png
+
+[users-auth-file-img]: https://github.com/GustavoHerreroNunes/go-digital-api/blob/main/readme-assets/arquivo_users-auth.png
+
+[empty-endpoint-img]: https://github.com/GustavoHerreroNunes/go-digital-api/blob/main/readme-assets/endpoint-array_vazio.png
+
+<!-- Others -->
 [issues]: https://github.com/shDupont/go-digital-api/issues
